@@ -12,7 +12,7 @@ public class LinearEquation {
     {
         if (x1 == x2) {
 
-            return;
+            System.out.println("These values are on the line " + x1);
         }
              this.x1 = x1;
              this.y1 = y1;
@@ -32,16 +32,13 @@ public class LinearEquation {
    the nearest hundredth */
     public double distance()
     {
-        //double x;
-        //x = x1;
-        //double Secondx;
-        //Secondx = x2;
-        //double y;
-        //y = y1;
-        //double Secondy;
-        //Secondy = y2;
-        //y = (y2-y1);
-        return roundedToHundredth(Math.hypot((double)x2 - (double)x1, (double)y2 - (double)y1));
+        double y;
+        double x;
+        y = Math.pow(((double)y2-(double)y1),2);
+        x = Math.pow(((double)x2-(double)x1),2);
+
+
+        return roundedToHundredth((Math.sqrt(x+y)));
 
     }
 
@@ -55,14 +52,14 @@ public class LinearEquation {
     {
         double Intercept;
         Intercept = 0;
-        if (x1>0) {
-             double yIntercept = roundedToHundredth((double)y1 - ((double)x1 * slope()));
+        if (x2 * slope()>0) {
+             double yIntercept = roundedToHundredth((double)y2 - ((double)x2 * slope()));
              Intercept = yIntercept;
         }else{
-             double yIntercept2 = roundedToHundredth((double)y1 + ((double)x1 * slope()));
+             double yIntercept2 = (double)y2 - ((double)x2 * slope());
              Intercept = yIntercept2;
         }
-        return Intercept;
+        return roundedToHundredth(Intercept);
     }
 
 
@@ -71,8 +68,12 @@ public class LinearEquation {
        (x2, y2), rounded to the nearest hundredth */
     public double slope()
     {
-
-        return Math.round((double) y2- (double) y1 )/ ( (double) x2 - (double) x1 );
+        double yValue;
+        yValue = y2-y1;
+        int xValue;
+        xValue = x2-x1;
+        return roundedToHundredth(yValue/xValue);
+       // return Math.round((double) y2 - (double) y1 ) / ( (double) x2 - (double) x1 );
 
     }
 
@@ -115,7 +116,8 @@ public class LinearEquation {
        both x and y coordinates as decimals to the nearest hundredth, e.g (-5.0, 6.75) */
     public String coordinateForX(double xValue)
     {
-        return "(" + x1 + ", " + y1 + " )";
+        double YCoordinate = roundedToHundredth((slope() * xValue) + yIntercept());
+        return "(" + xValue + ", " + YCoordinate + " )";
     }
 
 
@@ -128,8 +130,11 @@ public class LinearEquation {
         HINT:  the Math.round method can help with this!
      */
     public double roundedToHundredth(double toRound)
+
     {
-        return Math.round(toRound * 100) / 100;
+
+        double valueRounded = (Math.round(toRound * 100));
+        return valueRounded/100;
     }
 
     public String lineInfo()

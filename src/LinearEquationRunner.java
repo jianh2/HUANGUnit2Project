@@ -1,13 +1,14 @@
 import java.util.Scanner;
 
 public class LinearEquationRunner {
-    public static void main(String[] args)
+    public static void start(String[] args)
     {
 
-        int x1 = -1;
-        int y1 = 2;
-        int x2 = -3;
-        int y2 = 4;
+        int x1 = 7;
+        int y1 = 12;
+        int x2 = 3;
+        int y2 = 12;
+        System.out.print("Hello how are you");
         LinearEquation equation = new LinearEquation(x1, y1, x2, y2);
         System.out.println("Equation: " + equation.equation());
         System.out.println("Slope: " + equation.slope());
