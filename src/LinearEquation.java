@@ -12,7 +12,7 @@ public class LinearEquation {
     {
         if (x1 == x2) {
 
-            System.out.println("These values are on the line " + x1);
+            System.out.println("Enter new values");
         }
              this.x1 = x1;
              this.y1 = y1;
@@ -70,10 +70,11 @@ public class LinearEquation {
     {
         double yValue;
         yValue = y2-y1;
-        int xValue;
+        double xValue;
         xValue = x2-x1;
-        return roundedToHundredth(yValue/xValue);
-       // return Math.round((double) y2 - (double) y1 ) / ( (double) x2 - (double) x1 );
+        return yValue / xValue;
+
+
 
     }
 
@@ -105,6 +106,11 @@ public class LinearEquation {
      */
     public String equation()
     {
+        if (y1 == y2)
+        {
+            return "y = x " + "x" + "+ " + yIntercept();
+        }
+        
         return "y = " + slope() + "x" + "+ " + yIntercept();
     }
 
@@ -139,6 +145,8 @@ public class LinearEquation {
 
     public String lineInfo()
     {
+
+
         String originalPoints = "The original points were (" + x1 + "," + y1 + ")" + "and" + "( " + x2 + "," + y2 + " )";
         String equation = "The equation is " + equation();
         return originalPoints + "\n" + equation + "\n" + "The slope is " + slope() + " The y-intercept of the line is " + yIntercept() + " The distance is " + distance();
